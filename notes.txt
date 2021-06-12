@@ -1,0 +1,48 @@
+Mystery Word Road Map:
+
+Open/Read words.txt
+
+Pick a random word (.choices/.sample? - looks like random.choice(words) will do what we need?)
+
+Counting number of letters in word (Amy said don’t start here)
+
+Let the user know how many letters in are in the word
+
+Display blank spaces for each letter (is there a way to say: if letter not in word print " _ " so that it starts with/displays _ _ _ _ ?)
+
+Input prompt for user to put a letter in ... maybe with ...
+letter = input("What letter do you guess?")
+
+Require input to be 1 letter only (the below works when I input more than 1 letter in my terminal!)
+
+if len(letter) >= 2:
+        print("Your guess can only be one letter!")
+
+Set try limit to 8
+
+Run checks for letter:\
+
+If letter is not in random word, then pass (+1 try)
+
+Has letter already been guessed? If so, print “letter already guessed” (do not increase try count)
+
+If letter is in random word, return within the empty word spaces (do not increase try count)
+
+Once tries reaches 8, game over, print the word to the user
+
+Once all letters are found, print full word
+
+Once game is over (tries hit 8 or all letters found), print a prompt (input?) to ask for user for new game
+
+We need to go back in and figure out where to add the ability for the user to choose the level of difficulty (note that Amy said not to start with this!)
+ Easy (4-6 characters) Normal (6-8 characters) Hard (8+ characters)
+ 
+What if we created an input prompt for users to put in a difficulty by assigning Easy = 1, Normal = 2, Hard = 3? We would have to tell the user the numbers for each level and assign it on our end, but then once each number is assigned, then we pull from a certain pile?
+Even though most people know this game, do we want to print some basic instructions at the top? (edited)
+
+
+
+
+
+6:55
+even though we're not on the same team (:sob:) I am always down to work with you when you want!!!
