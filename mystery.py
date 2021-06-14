@@ -26,8 +26,6 @@ def get_level():
     print(f'Your word is {len(word)} characters long.')
     return word
 
-
-def display ()
 def display_word(word, guess_list):
         return [letter if letter in guess_list and word else '_' for letter in word]
 
@@ -40,16 +38,23 @@ def guess_input(guess_list):
     return guess_list
 
 def play(word):
+    guesses = 0
     guess_list = []
+    guess_input(guess_list)
+    wrong_guesses(word, guess_list)
     while True:
         len(guess_list) < 8
         #print(f"Wrong Guesses: {' '.join(wrong_guesses(word, guess_list))}")
         print(f"Mystery Word: {' '.join(display_word(word, guess_list))}")
         print(f"You have {8- len(guess_list)} guesses left. Don't screw it up.")
+        guesses += 1
+        break
         if "_" not in display_word(word, guess_list):
             print(f"Yay! You guessed the Mystery Word: {word}")
+            break
         if len(guess_list) >= 8:
             print(f"Oops, you're out of guesses.  The mystery word was {word}.")
+            break
 
 def wrong_guesses(word, guess_list):
     for letter in guess_list:
