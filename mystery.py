@@ -5,38 +5,57 @@ file = open('words.txt', 'r')
 list = file.read().lower().split()
 #print(list)
 
-selected_word = random.choice(list)
-selected_word_list = selected_word.split()
+#selected_word = random.choice(list)
 #print('selected word is: ', selected_word)
 
-def play(selected_word):
-    incorrect_guesses = []
-    guess_input()
-    display_word(selected_word_list, guess_list)
-    if guesses == 8:
-        print(f"Game Over. The mystery word was {selected_word}")
-    elif guesses < 0 and "_" in selected_word_list:
-        print(f"Mystery Word: {' '.join(display_word(selected_word_list, guess_list))}")
-        print(f"You've already guessed: {' '.join(incorrect_guesses)}")
-        print(f"You have {guesses_available} guesses left")
-    elif guesses < 8 and "_" not in selected_word_list:
-        print(f"Yay! you guessed the Mystery Word {selected_word}")
 
-def guess_input():
-    guess_list = []
-    guesses = 0
+easy_list = [ word for word in list if 4 <= len(word) <= 6 ]
+normal_list = [ word for word in list if 6 <= len(word) <= 8]  
+hard_list = [ word for word in list if 8 <= len(word)]
+
+def get_level():
+    level = input('Choose a level (easy, normal, hard):')
+    if level == 'easy':
+        word = random.choice(easy_list)
+    elif level == 'normal':
+        word = random.choice(normal_list)
+    elif level == 'hard':
+        word = random.choice(hard_list)
+    else:
+        return get_level()
+    print(f'Your word is {len(word)} characters long.')
+    return word
+
+
+def display ()
+def display_word(word, guess_list):
+        return [letter if letter in guess_list and word else '_' for letter in word]
+
+def guess_input(guess_list):
     guess = input("Choose a letter").lower()
     if len(guess) != 1:
         print("You may only guess 1 letter at a time")
     else:
-        guesses += 1
         guess_list.append(guess)
-    
+    return guess_list
 
-def display_word(selected_word_list, guess_list):
-    print([letter if letter in guess_list else '_' for letter in selected_word_list])
+def play(word):
+    guess_list = []
+    while True:
+        len(guess_list) < 8
+        #print(f"Wrong Guesses: {' '.join(wrong_guesses(word, guess_list))}")
+        print(f"Mystery Word: {' '.join(display_word(word, guess_list))}")
+        print(f"You have {8- len(guess_list)} guesses left. Don't screw it up.")
+        if "_" not in display_word(word, guess_list):
+            print(f"Yay! You guessed the Mystery Word: {word}")
+        if len(guess_list) >= 8:
+            print(f"Oops, you're out of guesses.  The mystery word was {word}.")
+
+def wrong_guesses(word, guess_list):
+    for letter in guess_list:
+        if letter not in word:
+            return sorted(set(letter))
 
 
-
-
-play(selected_word)
+word = (get_level())
+play(word)
